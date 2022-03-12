@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import twitterLogo from './assets/twitter-logo.svg';
+import discordLogo from './assets/discord.svg';
 import CandyMachine from './CandyMachine';
 
+
 // Constants
-const TWITTER_HANDLE = '_buildspace';
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+const DISCORD_HANDLE = 'Zarnyx';
+const DISCORD_LINK = `https://twitter.com/Q6JyeZ4kx8`;
 
 const App = () => {
   //State
@@ -82,24 +83,27 @@ const App = () => {
 
   return (
     <div className="App">
+     
       <div className="container">
+      <video src="/videos/video-1.mp4" autoPlay loop muted />
         <div className="header-container">
-          <p className="header">🍭 Candy Drop</p>
-          <p className="sub-text">NFT drop machine with fair mint</p>
+          <p className="header">Zpheres Genesis</p>
+          <p className="sub-text">“Every artist was first an amateur”</p>
           {!walletAddress && renderNotConnectedContainer()}
         </div>
         {/* Check for walletAddress and then pass in walletAddress */}
         {walletAddress && <CandyMachine walletAddress={window.solana} /> }
         <div className="footer-container">
-          <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
+          <img alt="Discord Logo" className="discord" src={discordLogo} />
           <a
             className="footer-text"
-            href={TWITTER_LINK}
+            href={DISCORD_LINK}
             target="_blank"
             rel="noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
+          >{`Join us now at ${DISCORD_HANDLE}`}</a>
         </div>
-      </div>
+      </div>  
+      
     </div>
   );
 };

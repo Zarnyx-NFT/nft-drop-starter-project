@@ -303,7 +303,7 @@ const CandyMachine = ({ walletAddress }) => {
 
   useEffect(() => {
     getCandyMachineState();
-  }, []);	
+  }, []);
 
   const getProvider = () => {
     const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
@@ -326,10 +326,10 @@ const CandyMachine = ({ walletAddress }) => {
     
     // Get metadata about your deployed candy machine program
     const idl = await Program.fetchIdl(candyMachineProgram, provider);
-
+  
     // Create a program that you can call
     const program = new Program(idl, candyMachineProgram, provider);
-
+  
     // Fetch the metadata from your candy machine
     const candyMachine = await program.account.candyMachine.fetch(
       process.env.REACT_APP_CANDY_MACHINE_ID
@@ -349,41 +349,8 @@ const CandyMachine = ({ walletAddress }) => {
     // We will be using this later in our UI so let's generate this now
     const goLiveDateTimeString = `${new Date(
       goLiveData * 1000
-    ).toLocaleDateString()} @ ${new Date(
-      goLiveData * 1000
-    ).toLocaleTimeString()}`;
-
-    // Add this data to your state to render
-    setCandyMachine({
-      id: process.env.REACT_APP_CANDY_MACHINE_ID,
-      program,
-      state: {
-        itemsAvailable,
-        itemsRedeemed,
-        itemsRemaining,
-        goLiveData,
-        goLiveDateTimeString,
-        isSoldOut: itemsRemaining === 0,
-        isActive:
-          (presale ||
-            candyMachine.data.goLiveDate.toNumber() < new Date().getTime() / 1000) &&
-          (candyMachine.endSettings
-            ? candyMachine.endSettings.endSettingType.date
-              ? candyMachine.endSettings.number.toNumber() > new Date().getTime() / 1000
-              : itemsRedeemed < candyMachine.endSettings.number.toNumber()
-            : true),
-        isPresale: presale,
-        goLiveDate: candyMachine.data.goLiveDate,
-        treasury: candyMachine.wallet,
-        tokenMint: candyMachine.tokenMint,
-        gatekeeper: candyMachine.data.gatekeeper,
-        endSettings: candyMachine.data.endSettings,
-        whitelistMintSettings: candyMachine.data.whitelistMintSettings,
-        hiddenSettings: candyMachine.data.hiddenSettings,
-        price: candyMachine.data.price,
-      },
-    });
-
+    ).toGMTString()}`
+  
     console.log({
       itemsAvailable,
       itemsRedeemed,
