@@ -378,7 +378,7 @@ const CandyMachine = ({ walletAddress }) => {
   };
 
   return (
-    candyMachine && candyMachine.state && (
+    candyMachine && (
       <div className="machine-container">
         {renderDropTimer()}
         <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
