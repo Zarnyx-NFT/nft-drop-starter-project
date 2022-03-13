@@ -278,7 +278,7 @@ const CandyMachine = ({ walletAddress }) => {
           systemProgram: SystemProgram.programId,
           rent: web3.SYSVAR_RENT_PUBKEY,
           clock: web3.SYSVAR_CLOCK_PUBKEY,
-          recentBlockhashes: web3.SYSVAR_RECENT_BLOCKHASHES_PUBKEY,
+          recentBlockhashes: web3.SYSVAR_SLOT_HASHES_PUBKEY,
           instructionSysvarAccount: web3.SYSVAR_INSTRUCTIONS_PUBKEY,
         },
         remainingAccounts:
