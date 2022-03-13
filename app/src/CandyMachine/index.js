@@ -15,7 +15,9 @@ import {
   getNetworkToken,
   CIVIC
 } from './helpers';
-
+const SYSVAR_SLOT_HASHES_PUBKEY = new PublicKey(
+  'SysvarS1otHashes111111111111111111111111111',
+);
 const { SystemProgram } = web3;
 const opts = {
   preflightCommitment: 'processed',
@@ -278,7 +280,7 @@ const CandyMachine = ({ walletAddress }) => {
           systemProgram: SystemProgram.programId,
           rent: web3.SYSVAR_RENT_PUBKEY,
           clock: web3.SYSVAR_CLOCK_PUBKEY,
-          recentBlockhashes: web3.SYSVAR_SLOT_HASHES_PUBKEY,
+          recentBlockhashes: SYSVAR_SLOT_HASHES_PUBKEY,
           instructionSysvarAccount: web3.SYSVAR_INSTRUCTIONS_PUBKEY,
         },
         remainingAccounts:
